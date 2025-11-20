@@ -6,12 +6,15 @@ import KanbanBoard from './components/KanbanBoard';
 import ListView from './components/ListView';
 import TaskForm from './components/TaskForm';
 import TaskRecommendations from './components/TaskRecommendations';
+import AIAssistant from './components/AIAssistant';
 import './App.css';
 
 function AppContent() {
   const [viewMode, setViewMode] = useState('kanban');
   const [isTaskFormOpen, setIsTaskFormOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
+  const [aiTask, setAiTask] = useState(null);
+  const [isAIAssistantOpen, setIsAIAssistantOpen] = useState(false);
   
   const { addTask, updateTask, deleteTask, toggleTask } = useTasks();
 
@@ -54,6 +57,16 @@ function AppContent() {
     setEditingTask(null);
   };
 
+  const handleAIAnalyze = (task) => {
+    setAiTask(task);
+    setIsAIAssistantOpen(true);
+  };
+
+  const handleCloseAIAssistant = () => {
+    setIsAIAssistantOpen(false);
+    setAiTask(null);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
       <Header 
@@ -77,6 +90,7 @@ function AppContent() {
                 onDelete={handleDeleteTask}
                 onToggle={handleToggleTask}
                 onAddTask={handleAddTask}
+                onAIAnalyze={handleAIAnalyze}
               />
             </motion.div>
           ) : (
@@ -92,6 +106,7 @@ function AppContent() {
                 onDelete={handleDeleteTask}
                 onToggle={handleToggleTask}
                 onAddTask={handleAddTask}
+                onAIAnalyze={handleAIAnalyze}
               />
             </motion.div>
           )}
@@ -106,6 +121,12 @@ function AppContent() {
       />
       
       <TaskRecommendations onAddTask={handleAddTask} />
+      
+      <AIAssistant
+        task={aiTask}
+        isOpen={isAIAssistantOpen}
+        onClose={handleCloseAIAssistant}
+      />
     </div>
   );
 }

@@ -8,7 +8,8 @@ import {
   Trash2, 
   CheckCircle2,
   Circle,
-  MoreVertical
+  MoreVertical,
+  Sparkles
 } from 'lucide-react';
 import { useTasks, TASK_PRIORITY } from '../context/TaskContext';
 
@@ -26,7 +27,7 @@ const priorityIcons = {
   [TASK_PRIORITY.URGENT]: '🔴'
 };
 
-export default function TaskCard({ task, onEdit, onDelete, onToggle, isDragging = false, dragAttributes, dragListeners }) {
+export default function TaskCard({ task, onEdit, onDelete, onToggle, onAIAnalyze, isDragging = false, dragAttributes, dragListeners }) {
   const { theme } = useTasks();
   
   const formatDate = (dateString) => {
@@ -101,6 +102,17 @@ export default function TaskCard({ task, onEdit, onDelete, onToggle, isDragging 
           <span className="text-sm select-none pointer-events-none" title={task.priority}>
             {priorityIcons[task.priority]}
           </span>
+          {onAIAnalyze && (
+            <button
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); onAIAnalyze(task); }}
+              onMouseDown={(e) => e.stopPropagation()}
+              className="p-2 hover:bg-purple-100 dark:hover:bg-purple-900 rounded"
+              title="AI Analysis"
+              aria-label="AI Analysis"
+            >
+              <Sparkles className="w-4 h-4 text-purple-500 hover:text-purple-700 dark:hover:text-purple-300" />
+            </button>
+          )}
           <button
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); onEdit(task); }}
             onMouseDown={(e) => e.stopPropagation()}

@@ -32,7 +32,7 @@ const statusConfig = {
   }
 };
 
-function SortableTaskCard({ task, onEdit, onDelete, onToggle }) {
+function SortableTaskCard({ task, onEdit, onDelete, onToggle, onAIAnalyze }) {
   const {
     attributes,
     listeners,
@@ -58,6 +58,7 @@ function SortableTaskCard({ task, onEdit, onDelete, onToggle }) {
         onEdit={onEdit}
         onDelete={onDelete}
         onToggle={onToggle}
+        onAIAnalyze={onAIAnalyze}
         isDragging={isDragging}
         dragAttributes={attributes}
         dragListeners={listeners}
@@ -66,7 +67,7 @@ function SortableTaskCard({ task, onEdit, onDelete, onToggle }) {
   );
 }
 
-function KanbanColumn({ status, tasks, onEdit, onDelete, onToggle, onAddTask }) {
+function KanbanColumn({ status, tasks, onEdit, onDelete, onToggle, onAddTask, onAIAnalyze }) {
   const config = statusConfig[status];
   const Icon = config.icon;
   
@@ -135,6 +136,7 @@ function KanbanColumn({ status, tasks, onEdit, onDelete, onToggle, onAddTask }) 
                 onEdit={onEdit}
                 onDelete={onDelete}
                 onToggle={onToggle}
+                onAIAnalyze={onAIAnalyze}
               />
             ))
           )}
@@ -144,7 +146,7 @@ function KanbanColumn({ status, tasks, onEdit, onDelete, onToggle, onAddTask }) 
   );
 }
 
-export default function KanbanBoard({ onEdit, onDelete, onToggle, onAddTask }) {
+export default function KanbanBoard({ onEdit, onDelete, onToggle, onAddTask, onAIAnalyze }) {
   const { getTasksByStatus, moveTask, reorderTasks } = useTasks();
   const [activeTask, setActiveTask] = React.useState(null);
 
@@ -208,6 +210,7 @@ export default function KanbanBoard({ onEdit, onDelete, onToggle, onAddTask }) {
           onDelete={onDelete}
           onToggle={onToggle}
           onAddTask={onAddTask}
+          onAIAnalyze={onAIAnalyze}
         />
         
         <KanbanColumn
@@ -217,6 +220,7 @@ export default function KanbanBoard({ onEdit, onDelete, onToggle, onAddTask }) {
           onDelete={onDelete}
           onToggle={onToggle}
           onAddTask={onAddTask}
+          onAIAnalyze={onAIAnalyze}
         />
         
         <KanbanColumn
@@ -226,6 +230,7 @@ export default function KanbanBoard({ onEdit, onDelete, onToggle, onAddTask }) {
           onDelete={onDelete}
           onToggle={onToggle}
           onAddTask={onAddTask}
+          onAIAnalyze={onAIAnalyze}
         />
       </div>
 
@@ -237,6 +242,7 @@ export default function KanbanBoard({ onEdit, onDelete, onToggle, onAddTask }) {
               onEdit={onEdit}
               onDelete={onDelete}
               onToggle={onToggle}
+              onAIAnalyze={onAIAnalyze}
               isDragging={true}
             />
           </div>

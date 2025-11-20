@@ -12,6 +12,7 @@ A modern, feature-rich task management application built with React, featuring d
 - ✅ **Dual View Modes** - Switch between Kanban board and List view
 - ✅ **Local Storage** - Persistent data without backend requirements
 - ✅ **Dark/Light Mode** - Smooth theme switching with system preference detection
+- 🤖 **AI-Powered Analysis** - Get AI insights, solutions, and clarifications for your tasks using Google Gemini
 
 ### UI/UX Features
 - 🎨 **Modern Design** - Clean, professional interface with TailwindCSS
@@ -48,12 +49,20 @@ A modern, feature-rich task management application built with React, featuring d
    npm install
    ```
 
-3. **Start development server**
+3. **Set up Gemini API Key**
+   - Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - Create a `.env` file in the root directory
+   - Add your API key:
+     ```
+     VITE_GEMINI_API_KEY=your_api_key_here
+     ```
+
+4. **Start development server**
    ```bash
    npm run dev
    ```
 
-4. **Open your browser**
+5. **Open your browser**
    Navigate to `http://localhost:5173`
 
 ### Building for Production
@@ -94,6 +103,15 @@ The built files will be in the `dist` directory.
 - Click the sun/moon icon in the header to toggle between light and dark modes
 - Theme preference is automatically saved
 
+### AI Assistant Features
+- **Analyze Task**: Click the sparkles icon (✨) on any task card to get AI-powered analysis
+  - Task analysis and insights
+  - Potential challenges and obstacles
+  - Actionable solutions and recommendations
+  - Best practices and tips
+- **Ask Questions**: Use the "Ask Question" tab to get specific answers about your task
+- **Generate Subtasks**: Use the "Subtasks" tab to break down complex tasks into smaller, actionable steps
+
 ## 🏗️ Project Structure
 
 ```
@@ -103,11 +121,15 @@ src/
 │   ├── TaskCard.jsx    # Individual task display component
 │   ├── TaskForm.jsx    # Add/edit task modal form
 │   ├── KanbanBoard.jsx # Drag-and-drop Kanban interface
-│   └── ListView.jsx    # Alternative list view
+│   ├── ListView.jsx    # Alternative list view
+│   └── AIAssistant.jsx # AI-powered task analysis component
+├── services/           # API services
+│   └── geminiService.js # Google Gemini API integration
 ├── context/            # React Context for state management
 │   └── TaskContext.jsx # Main app state and actions
 ├── hooks/              # Custom React hooks (future)
-├── utils/              # Utility functions (future)
+├── utils/              # Utility functions
+│   └── sampleData.js   # Sample task data
 ├── App.jsx            # Main application component
 ├── main.jsx           # Application entry point
 └── index.css          # Global styles and TailwindCSS imports
@@ -150,7 +172,10 @@ src/
 
 ## 🚀 Future Enhancements
 
-### Phase 2: AI Features
+### Phase 2: Enhanced AI Features
+- [x] AI task analysis and insights
+- [x] AI-powered question answering
+- [x] AI-generated subtask suggestions
 - [ ] Smart task suggestions based on patterns
 - [ ] Automatic priority assignment using ML
 - [ ] Time estimation for tasks

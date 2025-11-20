@@ -4,7 +4,7 @@ import TaskCard from './TaskCard';
 import { useTasks } from '../context/TaskContext';
 import { Plus } from 'lucide-react';
 
-export default function ListView({ onEdit, onDelete, onToggle, onAddTask }) {
+export default function ListView({ onEdit, onDelete, onToggle, onAddTask, onAIAnalyze }) {
   const { getFilteredTasks } = useTasks();
   const tasks = getFilteredTasks();
 
@@ -94,6 +94,7 @@ export default function ListView({ onEdit, onDelete, onToggle, onAddTask }) {
                     onEdit={onEdit}
                     onDelete={onDelete}
                     onToggle={onToggle}
+                    onAIAnalyze={onAIAnalyze}
                   />
                 </motion.div>
               ))}
